@@ -1,0 +1,41 @@
+<div mat-dialog-content>
+    <h4 class=" card-title">{{ data.title }}</h4>
+
+    <form appearance="fill">
+        <div class="pl-lg-4">
+            <div class=" row">
+                <div class="col-lg-6">
+                    <label class="form-control-label">Nom</label>
+                    <input name="nomInput" class="form-control form-control-alternative"
+                        [(ngModel)]="client.nom"><br><br>
+                </div>
+                <div class="col-lg-6">
+                    <label class="form-control-label">Prénom</label>
+                    <input name="prenomInput" class="form-control form-control-alternative"
+                        [(ngModel)]="client.prenom"><br>
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-lg-6">
+                    <label class="form-control-label">Téléphone</label>
+                    <input name="telInput" class="form-control form-control-alternative" [(ngModel)]="client.tel"><br>
+                </div>
+                <div class="col-lg-6">
+                    <label class="form-control-label">Activité</label>
+                    <input name="activiteInput" class="form-control form-control-alternative"
+                        [(ngModel)]="client.activite"><br>
+                </div>
+            </div>
+            <label class="form-control-label">Client</label>
+            <select class="form-control form-control-alternative" placeholder="Client" [(ngModel)]="client.societe">
+                <option *ngFor="let societe of listSocietes" [value]="societe.idSociete">{{ societe.nom }}
+                </option>
+            </select>
+            <br>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button class="btn btn-primary" (click)="onNoClick()">Cancel</button>
+    <button mat-button class="btn btn-primary" (click)="addClient()" cdkFocusInitial>Save</button>
+</div>

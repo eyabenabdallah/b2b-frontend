@@ -1,0 +1,71 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    
+</div>
+<div class="container-fluid mt--7">
+     <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card">
+                <nav>
+                    <input class="form-control" type="text" name="login" style="font-size: 17px; border-width: 3px;"
+                        [(ngModel)]="depart" (ngModelChange)="Search()" placeholder="Entrez un départ pour rechercher">
+                </nav>
+                <nav>
+                    <div class="row" style="margin-top:10px;margin-bottom: 10px;">
+                        <div class="col-sm-3 form-group">
+                            <input class="form-control" type="Date" name="startDate" [(ngModel)]="startDate"
+                                placeholder="Entrez une date début pour rechercher">
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <input class="form-control" type="Date" name="endDate" [(ngModel)]="endDate"
+                                placeholder="Entrez une date fin pour rechercher">
+                        </div><br>
+                        <div class="col-sm-3 form-group"> </div>
+                        <div class="col-sm-3 form-group">
+                            <button (click)="searchdata()" type="button" class="btn btn-primary">Rechercher </button>
+                        </div>
+                    </div>
+                </nav>
+                <br>
+                <div class=" card-header">
+                    <h4 class=" card-title">COURSES</h4>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-responsive">
+                        <table class=" table tablesorter">
+                            <thead class=" text-primary">
+                                <tr>
+                                    <th (click)="sort('numCourse')">Numéro &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('depart')">Départ &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('destination')">Destination &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('date')">Date &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('heure')">Heure &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('prix')">Prix &nbsp;<i class="fa fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let a of listCourses | orderBy: key: reserve | paginate: {itemsPerPage: 4,currentPage:p};'>
+                                    <td>{{a.numCourse}}</td>
+                                   <td>{{a.depart}}</td>
+                                   <td>{{a.destination}}</td>
+                                   <td>{{a.date}}</td>
+                                   <td>{{a.heure}}</td>
+                                   <td>{{a.prix}}</td>
+                                  
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        <pagination-controls (pageChange)="p= $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-sm-12 form-group" style="text-align: center;">
+        <button type="button" disabled style="opacity: 1;" class="btn btn-primary">Nombre des courses pendant ce mois : {{count}} courses</button>
+    </div>
+    <div class="col-sm-12 form-group" style="text-align: center;">
+        <button type="button" disabled style="opacity: 1;" class="btn btn-primary">Somme des prix des courses pendant ce mois : {{somme}} dt </button>
+    </div>
+</div>
