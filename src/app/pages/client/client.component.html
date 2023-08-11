@@ -1,0 +1,57 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+            <div class="row">
+                <div class="col-lg-7 col-md-10">
+                    <button class="btn btn-primary" (click)="openAddClientDialog()" >Ajouter un personnel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--7">
+     <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card">
+                <nav>
+                    <input class="form-control" type="text" name="login" style="font-size: 17px; border-width: 3px;"
+                        [(ngModel)]="prenom" (ngModelChange)="Search()" placeholder="Entrez le prénom du personnel pour rechercher.">
+                </nav>
+                <br>
+                <div class=" card-header">
+                    <h4 class=" card-title">PERSONNELS</h4>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-responsive">
+                        <table class=" table tablesorter">
+                            <thead class=" text-primary">
+                                <tr>
+                                    <th (click)="sort('nom')">Nom Prénom &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('tel')">Téléphone &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('activite')">Activité &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let a of listClients | orderBy: key: reserve | paginate: {itemsPerPage: 4,currentPage:p}; '>
+                                   <td>{{a.nom}} {{a.prenom}}</td>
+                                   <td>{{a.tel}}</td>
+                                   <td>{{a.activite}}</td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <button (click)="deleteClient(a.idClient)" type="button" title="Supprimer"
+                                        class="btn btn-floating btn-sm btn-danger"><i class="fa fa-trash"></i> Supprimer </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="p= $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

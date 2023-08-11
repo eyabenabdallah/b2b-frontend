@@ -1,0 +1,193 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+  style="min-height: 600px; background-image: url(assets/img/brand/taxiCity.png); background-size: 50%; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Salut {{connectedUser.username}}</h1>
+        <p class="text-white mt-0 mb-5">Il s'agit de votre page de profil. Vous pouvez voir les progrès que vous avez
+          réalisés dans votre travail et gérer vos courses ou tâches assignées.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 order-lg-2">
+            <div class="card-profile-image">
+              <img src="assets/img/brand/CITY-B2B.png" class="rounded-circle">
+            </div>
+          </div>
+        </div>
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+        </div>
+        <div class="card-body pt-0 pt-md-4">
+          <div class="text-center">
+            <br><br><br>
+            <h3>{{connectedUser.nom}} {{connectedUser.prenom}} </h3>
+            <div>
+              <i class="ni education_hat mr-2"></i>Solution {{connectedUser.role}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="currentUser.roles[0].authority ==='ROLE_ADMIN'" class="col-xl-8 order-xl-1">
+      <div class="btn btn-info" (click)="editUserProfile(connectedUser)">Modifier profil</div>
+      <br><br>
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Mon compte</h3>
+            </div>
+            <div class="col-4 text-right">
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <!-- Identifiants du compte -->
+            <h6 class="heading-small text-muted mb-4">Identifiants du compte</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Nom d'utilisateur</label>
+                    <input type="text" id="input-username" class="form-control form-control-alternative"
+                      placeholder="Username" [(ngModel)]="connectedUser.username"
+                      [ngModelOptions]="{standalone : true}">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-role">Role</label>
+                    <input type="text" id="input-role" disabled="" class="form-control form-control-alternative"
+                      placeholder="Role" [(ngModel)]="connectedUser.role" [ngModelOptions]="{standalone : true}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Coordonnees -->
+            <h6 class="heading-small text-muted mb-4">Mes coordonnées</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-nom">Nom</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Nom"
+                      [(ngModel)]="connectedUser.nom" [ngModelOptions]="{standalone : true}">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-prenom">Prénom</label>
+                    <input type="text" id="input-prenom" class="form-control form-control-alternative"
+                      placeholder="Prénom" [(ngModel)]="connectedUser.prenom" [ngModelOptions]="{standalone : true}">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-tel">Téléphone</label>
+                    <input type="number" id="input-telephone" class="form-control form-control-alternative"
+                      placeholder="Num telephone" [(ngModel)]="connectedUser.tel"
+                      [ngModelOptions]="{standalone : true}">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="currentUser.roles[0].authority ==='ROLE_AGENT' || currentUser.roles[0].authority ==='ROLE_TAXI' " class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Mon compte</h3>
+            </div>
+            <div class="col-4 text-right">
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <!-- Identifiants du compte -->
+            <h6 class="heading-small text-muted mb-4">Identifiants du compte</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Nom d'utilisateur</label>
+                    <input type="text" id="input-username" disabled="" class="form-control form-control-alternative"
+                      placeholder="Username" [(ngModel)]="connectedUser.username"
+                      [ngModelOptions]="{standalone : true}">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-role">Role</label>
+                    <input type="text" id="input-role" disabled="" class="form-control form-control-alternative"
+                      placeholder="Role" [(ngModel)]="connectedUser.role" [ngModelOptions]="{standalone : true}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Coordonnees -->
+            <h6 class="heading-small text-muted mb-4">Mes coordonnées</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-nom">Nom</label>
+                    <input id="input-nom" disabled="" class="form-control form-control-alternative" placeholder="Nom"
+                      [(ngModel)]="connectedUser.nom" [ngModelOptions]="{standalone : true}">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-prenom">Prénom</label>
+                    <input type="text" id="input-prenom" disabled="" class="form-control form-control-alternative"
+                      placeholder="Prénom" [(ngModel)]="connectedUser.prenom" [ngModelOptions]="{standalone : true}">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-tel">Téléphone</label>
+                    <input type="number" id="input-telephone" disabled="" class="form-control form-control-alternative"
+                      placeholder="Num telephone" [(ngModel)]="connectedUser.tel"
+                      [ngModelOptions]="{standalone : true}">
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="currentUser.roles[0].authority ==='ROLE_TAXI'" class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-nom">Numéro taxi</label>
+                      <input id="input-num" disabled="" class="form-control form-control-alternative" placeholder="Numéro taxi"
+                        [(ngModel)]="connectedUser.taxi.numTaxi" [ngModelOptions]="{standalone : true}">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-adresse">Adresse</label>
+                      <input type="text" id="input-adresse" disabled="" class="form-control form-control-alternative"
+                        placeholder="Adresse" [(ngModel)]="connectedUser.taxi.adresse" [ngModelOptions]="{standalone : true}">
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

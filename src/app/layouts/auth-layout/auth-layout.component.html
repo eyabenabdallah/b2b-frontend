@@ -1,0 +1,58 @@
+<br>
+<div class="main-content">
+  <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+    <div class="container px-4">
+      <img src="assets/img/brand/B2B.png" width="210" height="210" />
+      <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+        <!-- Navbar items -->
+        <div class="text-center justify-content-center">
+        <ul class="navbar-nav ml-auto ">
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/home']">
+              <i class="ni ni-app"></i>
+              <span class="nav-link-inner--text">HOME</span>
+            </a>
+          </li>
+        </ul>
+        </div>
+            <ul class="navbar-nav ml-auto ">
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/login']">
+              <i class="ni ni-key-25"></i>
+              <span class="nav-link-inner--text">LOGIN</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <img src="assets/img/brand/CITY-B2B.png" width="210" height="210" />
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
+<footer class="py-5">
+  <div class="container">
+    <div class="row align-items-center justify-content-xl-between">
+      <div class="col-xl-6">
+        <div class="copyright text-center text-xl-left text-muted">
+          &copy; {{ test | date: "yyyy" }} <a class="font-weight-bold ml-1" target="_blank">EYSA</a>
+        </div>
+      </div>
+      <div class="col-xl-12">
+        <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+          <li class="nav-item">
+            <a class="nav-link" target="_blank">Taxi City</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" target="_blank">N° Tel : 71 233 400  </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" target="_blank">N° Po : 55 840 800  - 58 624 555</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" target="_blank">Mail : Contact@taxicity.tn </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

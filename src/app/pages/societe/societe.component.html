@@ -1,0 +1,60 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+            <div class="row">
+                <div class="col-lg-7 col-md-10">
+                    <button class="btn btn-primary" (click)="openAddSocieteDialog()" >Ajouter un client</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--7">
+     <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card">
+                <nav>
+                    <input class="form-control" type="text" name="login" style="font-size: 17px; border-width: 3px;"
+                        [(ngModel)]="nom" (ngModelChange)="Search()" placeholder="Entrez le nom du client pour rechercher.">
+                </nav>
+                <br>
+                <div class=" card-header">
+                    <h4 class=" card-title">CLIENTS</h4>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-responsive">
+                        <table class=" table tablesorter">
+                            <thead class=" text-primary">
+                                <tr>
+                                    <th (click)="sort('nom')">Nom &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('adresse')">Adresse &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('contact')">Contact &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let a of listSocietes | orderBy: key: reserve | paginate: {itemsPerPage: 2,currentPage:p}; '>
+                                   <td>{{a.nom}}</td>
+                                   <td>{{a.adresse}}</td>
+                                   <td>{{a.contact}}</td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <button (click)="deleteSociete(a.idSociete)" type="button" title="Supprimer"
+                                        class="btn btn-floating btn-sm btn-danger"><i class="fa fa-trash"></i> Supprimer </button>
+                                    
+                                        <button (click)="openUpdateSocieteDialog(a)" type="button" title="Modifier"
+                                        class="btn btn-floating btn-sm bg-yellow"><i class="ni ni-settings-gear-65"></i> Modifier</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="p= $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

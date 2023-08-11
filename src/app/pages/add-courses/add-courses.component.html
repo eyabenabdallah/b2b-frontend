@@ -1,0 +1,127 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+            <div class="row">
+                <div class="col-lg-7 col-md-10">
+                    <a [routerLink]="['..']" class="btn btn-primary">Retour</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--7 justify-content-center">
+    <div class="row">
+        <div class="col-xl-8 order-xl-1">
+            <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">Nouvelle Course</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="card-header bg-white border-0">
+                            <h6 class="heading-small text-muted mb-4">Détails</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label class="form-control-label">Départ</label>
+                                        <input class="form-control form-control-alternative" type="text"
+                                            [(ngModel)]="Course.depart">
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="form-control-label">Destination</label>
+                                        <input class="form-control form-control-alternative" type="text"
+                                            [(ngModel)]="Course.destination">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="form-control-label">Date</label>
+                                        <input class="form-control form-control-alternative" type="date"
+                                            [(ngModel)]="Course.date">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="form-control-label">Heure</label>
+                                        <input class="form-control form-control-alternative" type="time"
+                                            [(ngModel)]="Course.heure">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+                        <!-- Taxi Description -->
+                        <div class="card-header bg-white border-0">
+                            <h6 class="heading-small text-muted mb-4">Description du taxi</h6>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label">Numéro Taxi</label>
+                                    <select [(ngModel)]="logId" class="form-control form-control-alternative" (change)="getNumTaxi()">
+                                        <option *ngFor="let num of numTaxi" [value]="num" >{{num}}</option>
+                                    </select>
+                                </div>
+                            </div>  
+                        </div>
+                        <hr class="my-4" />
+                        <!-- Client Description -->
+                        <div class="card-header bg-white border-0">
+                            <h6 class="heading-small text-muted mb-4">Description du client</h6>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label">Client</label>
+                                    <select [(ngModel)]="selectedSociete" class="form-control form-control-alternative" (change)="getAllClients()">
+                                      <option *ngFor="let s of listSocietes" [value]="s.nom">{{ s.nom }}</option>
+                                    </select>
+                                  </div>
+                            </div>
+                            <div *ngIf="selectedSociete!=null">
+                                <hr class="my-4" />
+                                <div class="card-header bg-white border-0">
+                                    <h6 class="heading-small text-muted mb-4">Description du personnel</h6>
+                                    <mat-card *ngFor="let client of Client; let i = index">
+                                        <mat-card-content>
+                                          <div class="col-lg-6">
+                                            <div class="form-group">
+                                              <label class="form-control-label">Personnel</label>
+                                              <select multiple [(ngModel)]="client.selectedClients" class="form-control form-control-alternative"
+                                                      (change)="onClientSelectionChange(i)" name="selectedClients" [ngModelOptions]="{standalone: true}">
+                                                <option *ngFor="let c of listClients" [value]="c">{{c.prenom}} {{c.nom}}</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                          <div *ngIf="client.selectedClients.length > 0">
+                                            <p>Selected Client:</p>
+                                            <ul>
+                                              <li *ngFor="let selectedClient of client.selectedClients">Nom Prénom : {{selectedClient.nom}} {{selectedClient.prenom}}</li>
+                                              <li *ngFor="let selectedClient of client.selectedClients">Téléphone: {{selectedClient.tel}}</li>
+                                              <li *ngFor="let selectedClient of client.selectedClients">Activité: {{selectedClient.activite}}</li>
+                                            </ul>
+                                          </div>
+                                          <button class="btn btn-sm btn-danger" (click)="removeClient(i)">Supprimer</button>
+                                        </mat-card-content>
+                                      </mat-card>
+                                    <button class="btn btn-sm btn-primary float-right" (click)="addClient()">Ajouter un personnel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <hr class="my-4" />
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <a [routerLink]="['..']" class="btn btn-primary">Retour</a>
+                        </div>
+                        <div class="col-4 text-right">
+                            <button class="btn btn-primary" (click)="addNewCourse()">Enregistrer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

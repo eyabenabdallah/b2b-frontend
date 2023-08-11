@@ -1,0 +1,84 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+            <div class="row">
+                <div class="col-lg-7 col-md-10">
+                    <a [routerLink]="['addcourse']" (click)="onClick()" class="btn btn-primary">Ajouter une course</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--7">
+     <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card">
+                <nav>
+                    <input class="form-control" type="text" name="login" style="font-size: 17px; border-width: 3px;"
+                        [(ngModel)]="depart" (ngModelChange)="Search()" placeholder="Entrez un départ pour rechercher">
+                </nav>
+                <nav>
+                    <div class="row" style="margin-top:10px;margin-bottom: 10px;">
+                        <div class="col-sm-3 form-group">
+                            <input class="form-control" type="Date" name="startDate" [(ngModel)]="startDate"
+                                placeholder="Entrez une date de début pour rechercher">
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <input class="form-control" type="Date" name="endDate" [(ngModel)]="endDate"
+                                placeholder="Entrez une date de fin pour rechercher">
+                        </div><br>
+                        <div class="col-sm-3 form-group"> </div>
+                        <div class="col-sm-3 form-group">
+                            <button (click)="searchdata()" type="button" class="btn btn-primary">Rechercher </button>
+                        </div>
+                    </div>
+                </nav>
+                <br>
+                <div class=" card-header">
+                    <h4 class=" card-title">COURSES</h4>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-responsive">
+                        <table class=" table tablesorter">
+                            <thead class=" text-primary">
+                                <tr>
+                                    <th (click)="sort('numCourse')">Numéro &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('depart')">Départ &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('destination')">Destination &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('date')">Date &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('heure')">Heure &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th (click)="sort('prix')">Prix &nbsp;<i class="fa fa-sort"></i></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let a of listCourses | orderBy: key: reserve | paginate: {itemsPerPage: 4,currentPage:p}; '>
+                                   <td>{{a.numCourse}}</td> 
+                                   <td>{{a.depart}}</td>
+                                   <td>{{a.destination}}</td>
+                                   <td>{{a.date}}</td>
+                                   <td>{{a.heure}}</td>
+                                   <td>{{a.prix}}</td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <button (click)="deleteCourse(a.numCourse)" type="button" title="Supprimer"
+                                        class="btn btn-floating btn-sm btn-danger"><i class="fa fa-trash"></i> Supprimer</button>
+                                
+                                    <button [routerLink]="[a.numCourse]" type="button" title="Modifier"
+                                        class="btn btn-floating btn-sm bg-yellow"><i class="ni ni-settings-gear-65"></i> Modifier</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        <pagination-controls (pageChange)="p= $event"></pagination-controls>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

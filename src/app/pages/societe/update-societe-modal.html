@@ -1,0 +1,18 @@
+<div mat-dialog-content>
+    <p>{{ data.title }}</p>
+    <form appearance="fill">
+      <label class="form-control-label">Nom</label>
+      <input name="nomInput" class="form-control form-control-alternative" [(ngModel)]="societe.nom"
+        [ngModelOptions]="{standalone: true}"><br>
+      <label class="form-control-label">Adresse</label>
+      <input name="adresseInput" class="form-control form-control-alternative" [(ngModel)]="societe.adresse"
+        [ngModelOptions]="{standalone: true}"><br>
+      <label class="form-control-label">Contact</label>
+      <input name="contactInput" class="form-control form-control-alternative" [(ngModel)]="societe.contact"
+        [ngModelOptions]="{standalone: true}"><br>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button class="btn btn-primary" (click)="onNoClick()">Annuler</button>
+    <button mat-button class="btn btn-primary" [mat-dialog-close]="societe" cdkFocusInitial>Enregistrer</button>
+  </div>
